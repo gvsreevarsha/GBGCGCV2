@@ -6,10 +6,10 @@ import Students from './AllRecordsList';
 class Leaderboard extends Component {
   constructor(props) {
         super(props);
-        this.state={students: []};
+        this.state={students: [],login:this.props.login};
     }
     componentDidMount() {
-        Axios.get("http://localhost/login-backend/leaderboard.php")
+        Axios.get("http://localhost/login-backend/leaderboard.php?id="+this.props.login)
             .then(responses => {
                 this.setState({students: responses.data});
                 console.log(this.state.students);
@@ -20,7 +20,7 @@ class Leaderboard extends Component {
     }
      StudentsList(){
         return this.state.students.map(function (object,i){
-            return <Students obj={object} key={i}/>;
+            return <Students obj={object} key={i} login={321710303054}/>;
         });
     }
   render() {
