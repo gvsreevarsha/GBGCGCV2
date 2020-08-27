@@ -5,6 +5,7 @@ header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
 header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 error_reporting(E_ERROR);
 $students = [];
+$id = $_GET['id'];
 $sql1 = "SELECT * FROM `leaderboard` WHERE YOP=2021 LIMIT 10";
 if($result1=mysqli_query($con,$sql1)){
     $cr=0;
@@ -21,7 +22,7 @@ if($result1=mysqli_query($con,$sql1)){
         $students[$cr]["Ati_score"] = $row["Ati_rank"];
         $cr++;
     }
-    $sql2 = "SELECT * FROM `leaderboard` WHERE YOP=2021 and user_id=321710303054";
+    $sql2 = "SELECT * FROM `leaderboard` WHERE YOP=2021 and user_id=$id";
     $result2=mysqli_query($con,$sql2);
     $row2=mysqli_fetch_assoc($result2);
     if($row2["Cocubes_rank"]>10)
